@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "moshfeu.compare-folders",
+    "redhat.fabric8-analytics",
+    "editorconfig.editorconfig",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "christian-kohler.path-intellisense",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
