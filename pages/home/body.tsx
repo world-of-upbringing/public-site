@@ -1,5 +1,6 @@
 import GetToKnowUs from "./get_to_know_us";
 import Hero from "./hero";
+import Patrons from "./patrons";
 
 export default function Body() {
   return (
@@ -9,6 +10,9 @@ export default function Body() {
       </section>
       <section id="get-to-know-us" className="flex">
         <GetToKnowUs />
+      </section>
+      <section id="patrons" className="flex">
+        <Patrons />
       </section>
     </section>
   );
