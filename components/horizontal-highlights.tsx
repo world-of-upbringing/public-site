@@ -19,7 +19,7 @@ export default function HorizontalHighlights({
       <IconText id={`${texts[i]}-icon`} iconDef={icons[i]} text={texts[i]} />
     );
     buffer.push(
-      <div id={`${texts[i]}-div`} className="flex flex-col w-64 p-5">
+      <div id={`${texts[i]}-div`} className="flex flex-col w-64 p-5 mx-auto">
         {childBuffer}
       </div>
     );

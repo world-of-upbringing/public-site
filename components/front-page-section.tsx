@@ -1,4 +1,5 @@
 import React from "react";
+import Container from "./container";
 
 export default function FrontPageSection({
   title,
@@ -7,8 +8,8 @@ export default function FrontPageSection({
   backgroundColor,
 }: {
   title: string;
-  description: string;
-  children: JSX.Element | string;
+  description: string | undefined;
+  children: JSX.Element | JSX.Element[];
   backgroundColor: boolean;
 }) {
   return (
@@ -29,20 +30,24 @@ export default function FrontPageSection({
         >
           {title}
         </p>
-        <div className="flex flex-row p-3">
-          <div className="flex w-1/4" />
-          <p
-            className={
-              backgroundColor
-                ? "text-center text-grey"
-                : "text-center text-light-grey"
-            }
-          >
-            {description}
-          </p>
-          <div className="flex w-1/4" />
-        </div>
-        {children}
+        {description ? (
+          <div className="flex flex-row p-3">
+            <Container>
+              <p
+                className={
+                  backgroundColor
+                    ? "text-center text-grey"
+                    : "text-center text-light-grey"
+                }
+              >
+                {description}
+              </p>
+            </Container>
+          </div>
+        ) : (
+          <></>
+        )}
+        <Container>{children}</Container>
       </div>
     </div>
   );
