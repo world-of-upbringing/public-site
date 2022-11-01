@@ -1,17 +1,17 @@
-import Image from "next/image";
+import bg from "../../public/images/hero.webp";
 
 export default function Hero() {
   return (
     <div className="h-full">
-      <div className="flex-auto absolute w-full h-full overflow-hidden bg-fixed">
-        <Image
-          src="/images/hero.webp"
-          alt="Contact World of Upbringing"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-      </div>
+      <div
+        className="flex-auto absolute w-full h-full overflow-hidden bg-fixed"
+        style={{
+          backgroundImage: `url(${bg.src})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
+      />
 
       <div className="flex-auto absolute w-full h-full overflow-hidden">
         <div className="flex justify-center w-full h-full items-center">
