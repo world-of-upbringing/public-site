@@ -16,11 +16,11 @@ export default function FrontPageSection({
     <div
       className={
         backgroundColor
-          ? "w-screen flex-auto bg-primary"
-          : "w-screen flex-auto bg-background"
+          ? "w-screen h-screen flex-auto bg-primary"
+          : "w-screen h-screen flex-auto bg-background"
       }
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col relative top-1/2 -translate-y-2/4">
         <p
           className={
             backgroundColor
