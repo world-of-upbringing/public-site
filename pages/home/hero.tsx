@@ -1,3 +1,4 @@
+import Link from "next/link";
 import bg from "../../public/images/hero.webp";
 
 export default function Hero() {
@@ -20,14 +21,16 @@ export default function Hero() {
               World of Upbringing <br />
               <span>Nurturing Lives</span>
             </h2>
-            <button
-              type="button"
-              className="inline-block px-7 py-3 bg-highlight text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
-            >
-              Book Now
-            </button>
+            <Link href={{ pathname: '/payment/pay', query: { url: 'https://test.instamojo.com/@mini_asthana/', mode: 'consultation' } }}>
+              <button
+                type="button"
+                className="inline-block px-7 py-3 bg-highlight text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Book Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
