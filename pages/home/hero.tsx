@@ -25,7 +25,7 @@ export default function Hero() {
               href={{
                 pathname: "/payment/pay",
                 query: {
-                  url: "https://test.instamojo.com/@mini_asthana/",
+                  url: "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
                   mode: "consultation",
                 },
               }}
