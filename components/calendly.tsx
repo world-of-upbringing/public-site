@@ -1,26 +1,39 @@
 import Script from "next/script";
 
-export default function CalendlyWrapper({url, transactionId}: {url: string, transactionId: string}) {
-  return <>
-    <div className="calendly-inline-widget" data-auto-load="false" id="calendly-widget" style={{"minWidth":"320px","height":"630px"}}/>
-    <Script 
-      type="text/javascript" 
-      src="https://assets.calendly.com/assets/external/widget.js"
-      async
-      onLoad={() => {
-        console.log(transactionId);
-        Calendly.initInlineWidget({
-          url: "https://calendly.com/worldofupbringing/1-1-therapy",
-          parentElement: document.getElementById('calendly-widget'),
-          prefill: {
-            customAnswers: {
-              a1: `${transactionId}`
-            }
-          }
-        });
-      }}
-    />
-  </>
+export default function CalendlyWrapper({
+  url,
+  transactionId,
+}: {
+  url: string;
+  transactionId: string;
+}) {
+  return (
+    <>
+      <div
+        className="calendly-inline-widget"
+        data-auto-load="false"
+        id="calendly-widget"
+        style={{ minWidth: "320px", height: "630px" }}
+      />
+      <Script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async
+        onLoad={() => {
+          console.log(transactionId);
+          window.Calendly.initInlineWidget({
+            url: "https://calendly.com/worldofupbringing/1-1-therapy",
+            parentElement: document.getElementById("calendly-widget"),
+            prefill: {
+              customAnswers: {
+                a1: `${transactionId}`,
+              },
+            },
+          });
+        }}
+      />
+    </>
+  );
 }
 
 /*

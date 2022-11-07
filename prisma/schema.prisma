@@ -1,0 +1,34 @@
+generator client {
+  provider        = "prisma-client-js"
+  // The following is needed when using deploying to netlify using `netlify deploy` locally
+  // It can be removed if the deployment is configured on netlify to automatically deploy for each commit
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model transaction {
+  id                    BigInt @id @default(autoincrement())
+  payment_id            String
+  status                String
+  currency              String
+  fees                  Int
+  amount                Int
+  longurl               String
+  shorturl              String
+  purpose               String
+  buyer_email           String
+  buyer_name            String
+  buyer_phone           String
+  mac                   String
+  payment_request_id    String
+  time                  DateTime
+
+  @@index([payment_id], map: "transaction_payment_id")
+  @@index([longurl], map: "transaction_longurl")
+  @@index([status], map: "transaction_status")
+}
+

@@ -7,11 +7,15 @@ export default function Book() {
   const query = router.query;
   const id = query.transactionId as string;
   console.log(id);
-  if (!id) return <></>
+  if (!id) return <></>;
 
-  return <>
-    <Header/>
-    <CalendlyWrapper url="https://calendly.com/worldofupbringing" transactionId={id}/>
-  </>
-
+  return (
+    <>
+      <Header />
+      <CalendlyWrapper
+        url="https://calendly.com/worldofupbringing"
+        transactionId={id}
+      />
+    </>
+  );
 }
