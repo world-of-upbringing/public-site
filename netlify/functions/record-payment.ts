@@ -56,7 +56,7 @@ const _updateSheet = async (params: URLSearchParams): Promise<void> => {
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
   const sheet = google.sheets("v4");
-  console.log(process.env.GOOGLE_SHEET_ID);
+  console.log(process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY);
   await sheet.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
     auth: auth,
