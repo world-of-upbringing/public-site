@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react"; // import state
+import Button from "../../components/button";
 
 type CallbackFunction = (isOpen: boolean) => void;
 
@@ -128,9 +129,7 @@ export default function Navbar() {
           <NavLink to="/about">One-on-One</NavLink>
           <NavLink to="/about">About Us</NavLink>
           <NavLink to="/about">
-            <button className="bg-primary hover:bg-highlight text-white font-bold py-2 px-4 rounded">
-              Contact
-            </button>
+            <Button>Contact</Button>
           </NavLink>
         </div>
       </div>

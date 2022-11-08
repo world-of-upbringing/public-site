@@ -9,6 +9,7 @@ export default function TestimonialCarousel({
   for (const testi of testimonials) {
     buffer.push(
       <Testimonial
+        key={JSON.stringify(testi)}
         isActive={testi.isActive}
         img={testi.image}
         persona={testi.persona}
