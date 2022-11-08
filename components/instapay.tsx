@@ -27,7 +27,9 @@ export default function InstaPay({
         function onPaymentSuccessHandler(response: any) {
           alert(`Payment Success ${response}`);
           console.log("Payment Success Response", response);
-          router.push(`${success_callback}?id=${response.paymentId}`);
+          router.push(
+            `${success_callback}?transactionId=${response.paymentId}`
+          );
         }
 
         function onPaymentFailureHandler(response: any) {

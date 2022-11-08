@@ -23,7 +23,13 @@ export default function Services() {
   ];
 
   for (const service of services) {
-    buffer.push(<Service id={`service-${service.title}`} service={service} />);
+    buffer.push(
+      <Service
+        key={service.title}
+        id={`service-${service.title}`}
+        service={service}
+      />
+    );
   }
   return (
     <FrontPageSection
