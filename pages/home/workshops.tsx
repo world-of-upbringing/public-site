@@ -31,9 +31,8 @@ export default function Workshops() {
           title={workshop["Title"]}
           description={workshop["Description"]}
           cta={"INR " + workshop["Amount"]}
-          link={workshop["PaymentLink"]}
+          link={`/payment/pay?url=${workshop["PaymentLink"]}&mode=workshop`}
           date={date}
-          feature={"INR" + workshop["Amount"]}
         />
       </div>
     );

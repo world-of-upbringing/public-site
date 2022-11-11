@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import InstaPay from "../../components/instapay";
+import Header from "../header/header";
 
 export default function Pay() {
   const router = useRouter();
@@ -8,12 +9,17 @@ export default function Pay() {
   const mode = query.mode as string;
 
   return (
-    <InstaPay
-      url={url}
-      success_callback={
-        mode === "consultation" ? `/appointment/book` : `/payment/success`
-      }
-      failure_callback="/payment/failure"
-    />
+    <>
+      <Header />
+      <div id="body">
+        <InstaPay
+          url={url}
+          success_callback={
+            mode === "consultation" ? `/appointment/book` : `/payment/success`
+          }
+          failure_callback="/payment/failure"
+        />
+      </div>
+    </>
   );
 }

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import Button from "./button";
 
 export default function Card({
@@ -8,14 +6,12 @@ export default function Card({
   cta,
   link,
   date,
-  feature,
 }: {
   title: string;
   description: string;
   cta: string;
   link: string;
   date: string;
-  feature: string;
 }) {
   return (
     <div className="flex justify-center">
@@ -23,9 +19,9 @@ export default function Card({
         <div className="p-6">
           <div className="text-primary py-3 px-6 border-b border-gray-300">
             {date}
-            <Link href={link}>
+            <a href={link}>
               <Button>{cta}</Button>
-            </Link>
+            </a>
           </div>
           <h5 className="text-gray-900 text-highlight text-xl font-medium mb-2">
             {title}
