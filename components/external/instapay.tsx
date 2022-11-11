@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Script from "next/script";
+import { useEffect } from "react";
 
 export default function InstaPay({
   url,
@@ -11,10 +12,24 @@ export default function InstaPay({
   failure_callback: string;
 }) {
   const router = useRouter();
+
+  useEffect(() => {
+    const exitingFunction = () => {
+      window.Instamojo.close();
+    };
+
+    router.events.on("routeChangeStart", exitingFunction);
+
+    return () => {
+      console.log("unmounting component...");
+      router.events.off("routeChangeStart", exitingFunction);
+    };
+  }, []);
+
   return (
     <Script
       src="https://js.instamojo.com/v1/checkout.js"
-      onLoad={() => {
+      onReady={() => {
         /* Start client-defined Callback Handler Functions */
         function onOpenHandler() {
           console.log("Payments Modal is Opened");
@@ -25,7 +40,6 @@ export default function InstaPay({
         }
 
         function onPaymentSuccessHandler(response: any) {
-          alert(`Payment Success ${response}`);
           console.log("Payment Success Response", response);
           router.push(
             `${success_callback}?transactionId=${response.paymentId}`
@@ -33,7 +47,6 @@ export default function InstaPay({
         }
 
         function onPaymentFailureHandler(response: any) {
-          alert("Payment Failure");
           console.log("Payment Failure Response", response);
           router.push(`${failure_callback}?status=${response.status}`);
         }
