@@ -22,7 +22,7 @@ export default function CalendlyWrapper({
         onLoad={() => {
           console.log(transactionId);
           window.Calendly.initInlineWidget({
-            url: "https://calendly.com/worldofupbringing/1-1-therapy",
+            url: url ?? "https://calendly.com/worldofupbringing/1-1-therapy",
             parentElement: document.getElementById("calendly-widget"),
             prefill: {
               customAnswers: {

@@ -1,5 +1,5 @@
-import FrontPageSection from "../../components/front-page-section";
-import TestimonialCarousel from "../../components/testimonial-carousel";
+import FrontPageSection from "./frontPageSection";
+import TestimonialCarousel from "./testimonialCarousel";
 
 export default function Patrons() {
   return (

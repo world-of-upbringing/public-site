@@ -1,10 +1,10 @@
-import GetToKnowUs from "./get_to_know_us";
+import GetToKnowUs from "./getToKnowUs";
 import Hero from "./hero";
 import Patrons from "./patrons";
 import Services from "./services";
 import Workshops from "./workshops";
 
-export default function Body() {
+export default function HomePageBody() {
   return (
     <section id="home" className="flex flex-col">
       <section id="hero" className="flex h-screen">

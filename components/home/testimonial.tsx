@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Rating from "./rating";
+import Rating from "../common/rating";
 
 export interface ITestimonial {
   isActive: boolean;

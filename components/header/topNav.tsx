@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react"; // import state
-import Button from "../../components/button";
+import Button from "../common/button";
 
 type CallbackFunction = (isOpen: boolean) => void;
 

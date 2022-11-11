@@ -1,6 +1,6 @@
-import FrontPageSection from "../../components/front-page-section";
+import FrontPageSection from "./frontPageSection";
 import { useState, useEffect } from "react";
-import Card from "../../components/card";
+import Card from "../common/card";
 
 export default function Workshops() {
   const [data, setData] = useState(null);
@@ -31,7 +31,7 @@ export default function Workshops() {
           title={workshop["Title"]}
           description={workshop["Description"]}
           cta={"INR " + workshop["Amount"]}
-          link={`/payment/pay?url=${workshop["PaymentLink"]}&mode=workshop`}
+          link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
           date={date}
         />
       </div>

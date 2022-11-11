@@ -1,14 +1,13 @@
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
 
-const handler: Handler = async (event, context) => {
+const handler: Handler = async (event, _) => {
   if (event.httpMethod !== "GET") {
     return { statusCode: 405, data: "Method not supported" };
   }
 
   const values = await _getFromSheets();
   const response = JSON.stringify(_sheetToObject(values));
-  console.log(response);
   return { statusCode: 200, body: response };
 };
 
