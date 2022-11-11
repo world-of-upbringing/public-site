@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
-import IconText from "./icon_text";
+import IconText from "../common/icon_text";
 
 export default function HorizontalHighlights({
   icons,

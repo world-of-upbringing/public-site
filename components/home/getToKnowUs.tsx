@@ -3,8 +3,8 @@ import {
   faChild,
   faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
-import FrontPageSection from "../../components/front-page-section";
-import HorizontalHighlights from "../../components/horizontal-highlights";
+import FrontPageSection from "./frontPageSection";
+import HorizontalHighlights from "./horizontalHighlights";
 
 export default function GetToKnowUs() {
   return (

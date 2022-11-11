@@ -1,7 +1,6 @@
 import { faBriefcase, faChild } from "@fortawesome/free-solid-svg-icons";
-import Container from "../../components/container";
-import FrontPageSection from "../../components/front-page-section";
-import Service, { IService } from "../../components/service";
+import FrontPageSection from "./frontPageSection";
+import Service, { IService } from "./service";
 
 export default function Services() {
   const buffer = [];

@@ -23,7 +23,7 @@ export default function Hero() {
             </h2>
             <Link
               href={{
-                pathname: "/payment/pay",
+                pathname: "/payment",
                 query: {
                   url: "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
                   mode: "consultation",
