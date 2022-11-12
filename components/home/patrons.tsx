@@ -1,44 +1,48 @@
+import { useEffect, useState } from "react";
 import FrontPageSection from "./frontPageSection";
+import { ITestimonial } from "./testimonial";
 import TestimonialCarousel from "./testimonialCarousel";
 
 export default function Patrons() {
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/.netlify/functions/get-testimonials")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (data == null || data == undefined) return <></>;
+
+  const testimonials: ITestimonial[] = [];
+  for (const val of data as []) {
+    console.log(val);
+    testimonials.push({
+      isActive: false,
+      persona: val["persona"],
+      demographic: val["demographic"],
+      numStars: Number(val["numStars"]),
+      image: val["img"],
+      testimonial: val["testimonial"],
+    });
+  }
+  testimonials[0].isActive = true;
+
   return (
     <FrontPageSection
       title="Patrons of World of Upbringing"
       description=""
       backgroundColor={true}
     >
-      <TestimonialCarousel
-        testimonials={[
-          {
-            isActive: true,
-            image: "https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg",
-            persona: "House wife",
-            demographic: "Chennai, TN",
-            numStars: 5,
-            testimonial:
-              "In ac turpis justo. Vivamus auctor quam vitae odio feugiat pulvinar. Sed semper ligula sed lorem tincidunt dignissim. Nam sed cursus lectus. Proin non rutrum magna. Proin gravida, justo et imperdiet tristique, turpis nisi viverra est, nec posuere ex arcu sit amet erat. Sed a dictum sem. Duis pretium condimentum nulla.",
-          },
-          {
-            isActive: false,
-            image: "https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg",
-            persona: "Software Developer",
-            demographic: "Bengaluru, KA",
-            numStars: 4,
-            testimonial:
-              "Maecenas auctor, quam eget tincidunt pretium, felis diam semper turpis, sed scelerisque diam libero facilisis libero. Quisque vitae semper metus. Aliquam eudui aliquam, faucibus metus quis, elementum nunc",
-          },
-          {
-            isActive: false,
-            image: "https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg",
-            persona: "Designer",
-            demographic: "Mumbai, MH",
-            numStars: 3,
-            testimonial:
-              "Duis sagittis, turpis in ullamcorper venenatis, ligula nibh porta dui, sit amet rutrum enim massa in ante. Curabitur in justo at lorem laoreet ultricies. Nunc zigula felis, sagittis eget nisi vitae",
-          },
-        ]}
-      />
+      <TestimonialCarousel testimonials={testimonials} />
     </FrontPageSection>
   );
 }

@@ -3,7 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["www.worldofupbringing.com", "mdbootstrap.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+    domains: ["www.worldofupbringing.com", "mdbootstrap.com","*"],
   },
 };
 
