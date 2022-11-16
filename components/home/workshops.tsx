@@ -1,9 +1,14 @@
 import FrontPageSection from "./frontPageSection";
 import { useState, useEffect } from "react";
 import Card from "../common/card";
+import Modal from "../common/modal";
+import { IWorkshop } from "../../common/interfaces/IWorkshops";
 
 export default function Workshops() {
-  const [data, setData] = useState(null);
+  const [expandedCard, setExpandedCard] = useState<string | undefined>(
+    undefined
+  );
+  const [data, setData] = useState<IWorkshop[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,7 +24,25 @@ export default function Workshops() {
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (data == null || data == undefined) return <p>No workshops found</p>;
+  if (data.length === 0) return <p>No workshops found</p>;
+  let expandedCardInfo;
+  if (expandedCard) {
+    const expWorkshop = data.find((x) => x.Title === expandedCard);
+    if (expWorkshop) {
+      expandedCardInfo = (
+        <Card
+          title={expWorkshop["Title"]}
+          subtitle="Subtitle"
+          description={expWorkshop["Description"]}
+          cta={"INR " + expWorkshop["Amount"]}
+          link={`/payment?url=${expWorkshop["PaymentLink"]}&mode=workshop`}
+          date={new Date(expWorkshop["Date"]).toLocaleString()}
+          isExpanded={true}
+          onClick={() => setExpandedCard(expWorkshop["Title"])}
+        />
+      );
+    }
+  }
 
   const childElements = [];
   for (const workshop of data as []) {
@@ -34,6 +57,8 @@ export default function Workshops() {
           cta={"INR " + workshop["Amount"]}
           link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
           date={date}
+          isExpanded={false}
+          onClick={() => setExpandedCard(workshop["Title"])}
         />
       </div>
     );
@@ -46,6 +71,11 @@ export default function Workshops() {
       backgroundColor={true}
     >
       <div className="flex flex-col m-auto p-auto">
+        {expandedCard && (
+          <Modal isOpen={true} onClose={() => setExpandedCard(undefined)}>
+            {expandedCardInfo ?? <></>}
+          </Modal>
+        )}
         <div className="flex pb-10 hide-scroll-bar">
           <div className="flex flex-wrap mx-auto content-center">
             {childElements}
