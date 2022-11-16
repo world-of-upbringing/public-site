@@ -9,7 +9,7 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-    domains: ["www.worldofupbringing.com", "mdbootstrap.com","*"],
+    domains: ["www.worldofupbringing.com", "mdbootstrap.com", "*"],
   },
 };
 

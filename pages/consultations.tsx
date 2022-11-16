@@ -69,7 +69,8 @@ export default function ConsultationPage({
 export async function getStaticProps() {
   return {
     props: {
-      paymentLink: process.env.CONSULTATION_PAYMENT_LINK,
+      paymentLink:
+        "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
     },
   };
 }
