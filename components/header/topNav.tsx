@@ -126,8 +126,8 @@ export default function Navbar() {
         <div className="hidden md:flex place-items-center text-primary">
           <NavLink to="/contact">Blog</NavLink>
           <NavLink to="/about">Workshops</NavLink>
-          <NavLink to="/about">One-on-One</NavLink>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/consultations">One-on-One</NavLink>
+          <NavLink to="/about-us">About Us</NavLink>
           <NavLink to="/about">
             <Button>Contact</Button>
           </NavLink>

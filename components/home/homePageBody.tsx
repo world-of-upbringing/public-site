@@ -6,7 +6,7 @@ import Workshops from "./workshops";
 
 export default function HomePageBody() {
   return (
-    <section id="home" className="flex flex-col">
+    <div className="flex flex-col">
       <section id="hero" className="flex h-screen">
         <Hero />
       </section>
@@ -22,6 +22,6 @@ export default function HomePageBody() {
       <section id="workshops" className="flex">
         <Workshops />
       </section>
-    </section>
+    </div>
   );
 }

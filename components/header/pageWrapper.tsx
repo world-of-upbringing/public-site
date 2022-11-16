@@ -8,11 +8,13 @@ export default function PageWrapper({
   children: JSX.Element | JSX.Element[];
 }) {
   return (
-    <div className="bg-background flex flex-col">
+    <>
       <MetaHead />
-      <Header />
-      <div id="body">{children}</div>
-      <Footer />
-    </div>
+      <body className="min-h-screen w-screen text-base text-light-grey bg-white">
+        <Header />
+        <div id="content">{children}</div>
+        <Footer />
+      </body>
+    </>
   );
 }
