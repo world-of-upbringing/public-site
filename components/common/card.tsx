@@ -75,7 +75,7 @@ export default function Card({
         </div>
       )}
 
-      <div className="flex flex-row mx-1 pt-2 mt-auto mb-2">
+      <div className="flex flex-row mx-1 pt-6 mt-auto mb-2">
         {!isExpanded && (
           <div className="w-28 mx-auto text-xs">
             <Button onClick={() => onClick()}>Details</Button>
