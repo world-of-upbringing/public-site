@@ -3,7 +3,43 @@ import Link from "next/link";
 import { useState } from "react"; // import state
 import Button from "../common/button";
 
+type ILink = {
+  Title: string;
+  Link: string;
+  Button?: boolean;
+};
+
+const LINKS: ILink[] = [
+  {
+    Title: "Blog",
+    Link: "/blog",
+  },
+  {
+    Title: "Workshops",
+    Link: "/workshops",
+  },
+  {
+    Title: "Consultations",
+    Link: "/consultations",
+  },
+  {
+    Title: "About Us",
+    Link: "/about-us",
+  },
+  {
+    Title: "Contact",
+    Link: "/?contact-form=true",
+    Button: true,
+  },
+];
+
 type CallbackFunction = (isOpen: boolean) => void;
+
+type IProp = {
+  props: {
+    links: ILink[];
+  };
+};
 
 function NavLink({
   to,
@@ -44,7 +80,7 @@ function MobileNavLink({
 
 function Logo() {
   return (
-    <div className="w-40 flex p-8 items-center text-primary">
+    <div className="w-40 flex p-8 items-center">
       <Link href="/">
         <a>
           <Image src="/images/logo.png" alt="logo" width="60px" height="60px" />
@@ -67,33 +103,69 @@ function MobileNav({
   open: boolean;
   setOpen: CallbackFunction;
 }) {
+  const buffer = [];
+  console.log(LINKS.length);
+  for (const link of LINKS) {
+    if (!link.Button) {
+      buffer.push(
+        <MobileNavLink
+          key={link.Title}
+          to={link.Link}
+          setOpen={setOpen}
+          open={open}
+        >
+          {link.Title}
+        </MobileNavLink>
+      );
+    } else {
+      buffer.push(
+        <MobileNavLink
+          key={link.Title}
+          to={link.Link}
+          setOpen={setOpen}
+          open={open}
+        >
+          <Button>{link.Title}</Button>
+        </MobileNavLink>
+      );
+    }
+  }
   return (
     <div
       className={`absolute top-0 left-0 h-screen w-screen bg-background transform ${
         open ? "-translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
-      <div className="flex items-center justify-center filter drop-shadow-md bg-background text-primary h-20">
+      <div className="flex items-center justify-center filter drop-shadow-md bg-background text-dark-green h-20">
         {" "}
         {/*logo container*/}
         <Link href="/">
           <a className="text-xl font-semibold">World of Upbringing</a>
         </Link>
       </div>
-      <div className="flex flex-col ml-4 text-primary">
-        <MobileNavLink to="/contact" setOpen={setOpen} open={open}>
-          Contact
-        </MobileNavLink>
-        <MobileNavLink to="/about" setOpen={setOpen} open={open}>
-          About
-        </MobileNavLink>
-      </div>
+      <div className="flex flex-col ml-4 text-dark-green">{buffer}</div>
     </div>
   );
 }
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const buffer = [];
+  for (const link of LINKS) {
+    if (!link.Button) {
+      buffer.push(
+        <NavLink key={link.Title} to={link.Link}>
+          {link.Title}
+        </NavLink>
+      );
+    } else {
+      buffer.push(
+        <NavLink key={link.Title} to={link.Link}>
+          <Button>{link.Title}</Button>
+        </NavLink>
+      );
+    }
+  }
   return (
     <nav className="flex filter drop-shadow-md bg-background px-4 py-4 h-20 items-center">
       <MobileNav open={open} setOpen={setOpen} />
@@ -107,32 +179,57 @@ export default function Navbar() {
         >
           {/* hamburger button */}
           <span
-            className={`h-1 w-full bg-primary rounded-lg transform transition duration-300 ease-in-out ${
+            className={`h-1 w-full bg-dark-green rounded-lg transform transition duration-300 ease-in-out ${
               open ? "rotate-45 translate-y-3.5" : ""
             }`}
           />
           <span
-            className={`h-1 w-full bg-primary rounded-lg transition-all duration-300 ease-in-out ${
+            className={`h-1 w-full bg-dark-green rounded-lg transition-all duration-300 ease-in-out ${
               open ? "w-0" : "w-full"
             }`}
           />
           <span
-            className={`h-1 w-full bg-primary rounded-lg transform transition duration-300 ease-in-out ${
+            className={`h-1 w-full bg-dark-green rounded-lg transform transition duration-300 ease-in-out ${
               open ? "-rotate-45 -translate-y-3.5" : ""
             }`}
           />
         </div>
 
-        <div className="hidden md:flex place-items-center text-primary">
-          <NavLink to="/contact">Blog</NavLink>
-          <NavLink to="/about">Workshops</NavLink>
-          <NavLink to="/consultations">One-on-One</NavLink>
-          <NavLink to="/about-us">About Us</NavLink>
-          <NavLink to="/about">
-            <Button>Contact</Button>
-          </NavLink>
+        <div className="hidden md:flex place-items-center text-dark-green">
+          {buffer}
         </div>
       </div>
     </nav>
   );
+}
+
+export async function getStaticProps() {
+  console.log("props called");
+  return {
+    props: {
+      links: [
+        {
+          Title: "Blog",
+          Link: "/blog",
+        },
+        {
+          Title: "Workshops",
+          Link: "/workshops",
+        },
+        {
+          Title: "Consultations",
+          Link: "/consultations",
+        },
+        {
+          Title: "About Us",
+          Link: "/about-us",
+        },
+        {
+          Title: "Contact",
+          Link: "/?contact-form=true",
+          Button: true,
+        },
+      ],
+    },
+  };
 }

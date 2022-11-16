@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import PageWrapper from "../../components/header/pageWrapper";
 
-export default function Success() {
+export default function PaymentSuccessPage() {
   const router = useRouter();
   const query = router.query;
 

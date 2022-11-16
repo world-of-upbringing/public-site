@@ -1,36 +1,72 @@
 import Button from "./button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faCalendar,
+  faGlobe,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Card({
   title,
+  subtitle,
   description,
   cta,
   link,
   date,
 }: {
   title: string;
+  subtitle?: string;
   description: string;
   cta: string;
   link: string;
   date: string;
 }) {
   return (
-    <div className="flex justify-center">
-      <div className=" w-80 h-64 block rounded-lg shadow-lg bg-white max-w-sm text-center overflow-x-scroll">
-        <div className="p-6">
-          <div className="text-primary py-3 px-6 border-b border-gray-300">
-            {date}
-            <a href={link}>
-              <Button>{cta}</Button>
-            </a>
-          </div>
-          <h5 className="text-gray-900 text-highlight text-xl font-medium mb-2">
-            {title}
-          </h5>
-          <p className="text-gray-700 text-primary text-base mb-4">
-            {description}
-          </p>
+    <div className="flex flex-col h-48 w-full shadow-md rounded-2xl bg-white bg-gradient-to-b from-green/75 to-white/75">
+      <div className="mx-4 mt-3">
+        <p className="text-dark-green text-base text-center">
+          {title.toUpperCase()}
+        </p>
+      </div>
+
+      <div className="mx-4 mt-1">
+        <p className="text-dark-green text-sm text-center">{subtitle}</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faClock}
+        />
+        <p className="text-dark-green text-xs font-extralight">2 hours</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faCalendar}
+        />
+        <p className="text-dark-green text-xs font-extralight">{date}</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faGlobe}
+        />
+        <p className="text-dark-green text-xs font-extralight">English</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <div className="w-28 mx-auto text-xs">
+          <Button>Details</Button>
         </div>
-        <div className="py-3 px-6 border-t border-gray-300 text-gray-600"></div>
+        <div className="w-28 mx-auto text-xs">
+          <Button>Register now</Button>
+        </div>
       </div>
     </div>
   );

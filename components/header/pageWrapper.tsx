@@ -10,11 +10,11 @@ export default function PageWrapper({
   return (
     <>
       <MetaHead />
-      <body className="min-h-screen w-screen text-base text-light-grey bg-white">
+      <div className="min-h-screen w-screen text-base text-light-grey bg-white">
         <Header />
         <div id="content">{children}</div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 }

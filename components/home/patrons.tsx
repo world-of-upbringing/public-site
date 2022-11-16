@@ -24,7 +24,6 @@ export default function Patrons() {
 
   const testimonials: ITestimonial[] = [];
   for (const val of data as []) {
-    console.log(val);
     testimonials.push({
       isActive: false,
       persona: val["persona"],

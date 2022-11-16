@@ -4,8 +4,8 @@ export default function Button({
   children: string | JSX.Element | JSX.Element[];
 }) {
   return (
-    <button className="bg-primary hover:bg-highlight text-white font-bold py-2 px-4 rounded">
-      {children}
-    </button>
+    <div className="bg-dark-green hover:bg-green text-white py-2 px-4 rounded-xl shadow-lg">
+      <button className="w-full">{children}</button>
+    </div>
   );
 }

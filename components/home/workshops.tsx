@@ -26,9 +26,10 @@ export default function Workshops() {
     const date = new Date(workshop["Date"]).toLocaleString();
 
     childElements.push(
-      <div className="inline-block px-3 py-3">
+      <div key={workshop["Title"]} className="flex mx-auto py-6 w-60">
         <Card
           title={workshop["Title"]}
+          subtitle="Subtitle"
           description={workshop["Description"]}
           cta={"INR " + workshop["Amount"]}
           link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
@@ -44,9 +45,9 @@ export default function Workshops() {
       description={undefined}
       backgroundColor={true}
     >
-      <div className="flex flex-col bg-white m-auto p-auto">
-        <div className="flex overflow-x-scroll pb-10 hide-scroll-bar">
-          <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+      <div className="flex flex-col m-auto p-auto">
+        <div className="flex pb-10 hide-scroll-bar">
+          <div className="flex flex-wrap mx-auto content-center">
             {childElements}
           </div>
         </div>
