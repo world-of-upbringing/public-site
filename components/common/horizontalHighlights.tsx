@@ -20,12 +20,7 @@ export default function HorizontalHighlights({
       />
     );
     childBuffer.push(
-      <IconText
-        id={`${texts[i]}-icon`}
-        key={`${texts[i]}-icon`}
-        iconDef={icons[i]}
-        text={texts[i]}
-      />
+      <IconText key={`${texts[i]}-icon`} iconDef={icons[i]} text={texts[i]} />
     );
     buffer.push(
       <div
