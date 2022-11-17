@@ -98,7 +98,6 @@ function MobileNav({
   setOpen: CallbackFunction;
 }) {
   const buffer = [];
-  console.log(LINKS.length);
   for (const link of LINKS) {
     if (!link.Button) {
       buffer.push(
@@ -194,35 +193,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
-
-export async function getStaticProps() {
-  console.log("props called");
-  return {
-    props: {
-      links: [
-        {
-          Title: "Blog",
-          Link: "/blog",
-        },
-        {
-          Title: "Workshops",
-          Link: "/workshops",
-        },
-        {
-          Title: "Consultations",
-          Link: "/consultations",
-        },
-        {
-          Title: "About Us",
-          Link: "/about-us",
-        },
-        {
-          Title: "Contact",
-          Link: "/?contact-form=true",
-          Button: true,
-        },
-      ],
-    },
-  };
 }

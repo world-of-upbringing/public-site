@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { CALENDLY_LINK } from "../../common/constants";
+import { CALENDLY_LINK } from "../../lib/constants";
 
 export default function CalendlyWrapper({
   url,
@@ -21,7 +21,6 @@ export default function CalendlyWrapper({
         src="https://assets.calendly.com/assets/external/widget.js"
         async
         onLoad={() => {
-          console.log(transactionId);
           window.Calendly.initInlineWidget({
             url: url ?? CALENDLY_LINK,
             parentElement: document.getElementById("calendly-widget"),

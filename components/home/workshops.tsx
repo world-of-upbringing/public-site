@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Card from "../common/card";
 import Modal from "../common/modal";
-import { IWorkshop } from "../../common/interfaces/IWorkshops";
+import { IWorkshop } from "../../lib/interfaces/IWorkshops";
 
 export default function Workshops() {
   const [expandedCard, setExpandedCard] = useState<string | undefined>(

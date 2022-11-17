@@ -5,7 +5,7 @@ import PageWrapper from "../components/header/pageWrapper";
 
 export default function AboutUsPage() {
   return (
-    <PageWrapper>
+    <PageWrapper title="About Us">
       <Container>
         <div className="min-h-screen">
           <H2>VISION & MISSION</H2>
