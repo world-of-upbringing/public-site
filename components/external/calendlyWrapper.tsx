@@ -1,10 +1,11 @@
 import Script from "next/script";
+import { CALENDLY_LINK } from "../../common/constants";
 
 export default function CalendlyWrapper({
   url,
   transactionId,
 }: {
-  url: string;
+  url?: string;
   transactionId: string;
 }) {
   return (
@@ -22,7 +23,7 @@ export default function CalendlyWrapper({
         onLoad={() => {
           console.log(transactionId);
           window.Calendly.initInlineWidget({
-            url: url ?? "https://calendly.com/worldofupbringing/1-1-therapy",
+            url: url ?? CALENDLY_LINK,
             parentElement: document.getElementById("calendly-widget"),
             prefill: {
               customAnswers: {

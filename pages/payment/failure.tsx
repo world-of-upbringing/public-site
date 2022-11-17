@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Button from "../../components/common/button";
 import PageWrapper from "../../components/header/pageWrapper";
 
-export default function Failure() {
+export default function PaymentFailurePage() {
   const router = useRouter();
   const query = router.query;
 

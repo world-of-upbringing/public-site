@@ -7,19 +7,19 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: "#C0D66D",
-      background: "#FFFFFF",
-      highlight: "#5B914C",
+      green: "#BBD75B",
+      "dark-green": "#184F13",
       white: "#FFFFFF",
       grey: "#555555",
       "light-grey": "#999999",
     },
     extend: {
       spacing: {
-        1200: "1200px",
-        1000: "1024px",
-        750: "768px",
-        600: "640px",
+        1536: "1536px",
+        1280: "1280px",
+        1024: "1024px",
+        768: "768px",
+        600: "600px",
       },
     },
   },

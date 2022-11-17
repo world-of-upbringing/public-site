@@ -1,36 +1,118 @@
 import Button from "./button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faCalendar,
+  faGlobe,
+  faRupeeSign,
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+
+export type CallbackFunction = () => void;
 
 export default function Card({
   title,
+  subtitle,
+  duration,
   description,
   cta,
   link,
   date,
+  isExpanded,
+  onClick,
 }: {
   title: string;
+  subtitle?: string;
+  duration: number;
   description: string;
   cta: string;
   link: string;
   date: string;
+  isExpanded: boolean;
+  onClick: CallbackFunction;
 }) {
   return (
-    <div className="flex justify-center">
-      <div className=" w-80 h-64 block rounded-lg shadow-lg bg-white max-w-sm text-center overflow-x-scroll">
-        <div className="p-6">
-          <div className="text-primary py-3 px-6 border-b border-gray-300">
-            {date}
-            <a href={link}>
-              <Button>{cta}</Button>
-            </a>
-          </div>
-          <h5 className="text-gray-900 text-highlight text-xl font-medium mb-2">
-            {title}
-          </h5>
-          <p className="text-gray-700 text-primary text-base mb-4">
+    <div className="flex flex-col w-full shadow-md rounded-2xl bg-white bg-gradient-to-b from-green/75 to-white/75">
+      <div className="mx-4 mt-3">
+        <p className="text-dark-green text-base text-center uppercase">
+          {title}
+        </p>
+      </div>
+
+      {subtitle && (
+        <div className="mx-4 mt-1">
+          <p className="text-dark-green text-sm font-light text-center uppercase">
+            {subtitle}
+          </p>
+        </div>
+      )}
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faClock}
+        />
+        <p className="text-dark-green text-xs font-extralight">
+          {duration.toString() + " hours"}
+        </p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faCalendar}
+        />
+        <p className="text-dark-green text-xs font-extralight">{date}</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faRupeeSign}
+        />
+        <p className="text-dark-green text-xs font-extralight">{cta}</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faGlobe}
+        />
+        <p className="text-dark-green text-xs font-extralight">English</p>
+      </div>
+      {isExpanded && (
+        <div className="mt-2 px-2">
+          <p className="text-dark-green text-xs font-extralight">
             {description}
           </p>
         </div>
-        <div className="py-3 px-6 border-t border-gray-300 text-gray-600"></div>
+      )}
+
+      <div className="flex flex-row mx-1 pt-6 mt-auto mb-2">
+        {!isExpanded && (
+          <div className="w-28 mx-auto text-xs">
+            <Button onClick={() => onClick()}>Details</Button>
+          </div>
+        )}
+        <div className="w-28 mx-auto text-xs">
+          <Link
+            href={{
+              pathname: "/payment",
+              query: {
+                url: link,
+                mode: "workshop",
+              },
+            }}
+          >
+            <a>
+              <Button>Register now</Button>
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );

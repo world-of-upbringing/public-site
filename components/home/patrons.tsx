@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import FrontPageSection from "./frontPageSection";
-import { ITestimonial } from "./testimonial";
-import TestimonialCarousel from "./testimonialCarousel";
+import { ITestimonial } from "../content/testimonial";
+import TestimonialCarousel from "../content/testimonialCarousel";
 
 export default function Patrons() {
   const [data, setData] = useState(null);
@@ -24,7 +23,6 @@ export default function Patrons() {
 
   const testimonials: ITestimonial[] = [];
   for (const val of data as []) {
-    console.log(val);
     testimonials.push({
       isActive: false,
       persona: val["persona"],
@@ -36,13 +34,5 @@ export default function Patrons() {
   }
   testimonials[0].isActive = true;
 
-  return (
-    <FrontPageSection
-      title="Patrons of World of Upbringing"
-      description=""
-      backgroundColor={true}
-    >
-      <TestimonialCarousel testimonials={testimonials} />
-    </FrontPageSection>
-  );
+  return <TestimonialCarousel testimonials={testimonials} />;
 }

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import InstaPay from "../../components/external/instapay";
 import PageWrapper from "../../components/header/pageWrapper";
 
-export default function Pay() {
+export default function PaymentPage() {
   const router = useRouter();
   const query = router.query;
   const url = query.url as string;
