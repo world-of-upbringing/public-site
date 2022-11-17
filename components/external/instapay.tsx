@@ -24,7 +24,7 @@ export default function InstaPay({
       console.log("unmounting component...");
       router.events.off("routeChangeStart", exitingFunction);
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <Script

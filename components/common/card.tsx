@@ -6,7 +6,6 @@ import {
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { type } from "os";
 
 export type CallbackFunction = () => void;
 

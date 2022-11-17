@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import FrontPageSection from "./frontPageSection";
 import { ITestimonial } from "../content/testimonial";
 import TestimonialCarousel from "../content/testimonialCarousel";
 
