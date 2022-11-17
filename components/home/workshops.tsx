@@ -1,4 +1,3 @@
-import FrontPageSection from "./frontPageSection";
 import { useState, useEffect } from "react";
 import Card from "../common/card";
 import Modal from "../common/modal";
@@ -65,23 +64,17 @@ export default function Workshops() {
   }
 
   return (
-    <FrontPageSection
-      title="Workshops"
-      description={undefined}
-      backgroundColor={true}
-    >
-      <div className="flex flex-col m-auto p-auto">
-        {expandedCard && (
-          <Modal isOpen={true} onClose={() => setExpandedCard(undefined)}>
-            {expandedCardInfo ?? <></>}
-          </Modal>
-        )}
-        <div className="flex pb-10 hide-scroll-bar">
-          <div className="flex flex-wrap mx-auto content-center">
-            {childElements}
-          </div>
+    <div className="flex flex-col m-auto p-auto">
+      {expandedCard && (
+        <Modal isOpen={true} onClose={() => setExpandedCard(undefined)}>
+          {expandedCardInfo ?? <></>}
+        </Modal>
+      )}
+      <div className="flex pb-10 hide-scroll-bar">
+        <div className="flex flex-wrap mx-auto content-center">
+          {childElements}
         </div>
       </div>
-    </FrontPageSection>
+    </div>
   );
 }

@@ -35,12 +35,6 @@ const LINKS: ILink[] = [
 
 type CallbackFunction = (isOpen: boolean) => void;
 
-type IProp = {
-  props: {
-    links: ILink[];
-  };
-};
-
 function NavLink({
   to,
   children,
@@ -80,7 +74,7 @@ function MobileNavLink({
 
 function Logo() {
   return (
-    <div className="w-40 flex p-8 items-center">
+    <div className="w-40 flex py-2 items-center">
       <Link href="/">
         <a>
           <Image src="/images/logo.png" alt="logo" width="60px" height="60px" />
@@ -137,7 +131,6 @@ function MobileNav({
       } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
       <div className="flex items-center justify-center filter drop-shadow-md bg-background text-dark-green h-20">
-        {" "}
         {/*logo container*/}
         <Link href="/">
           <a className="text-xl font-semibold">World of Upbringing</a>
@@ -167,7 +160,7 @@ export default function Navbar() {
     }
   }
   return (
-    <nav className="flex filter drop-shadow-md bg-background px-4 py-4 h-20 items-center">
+    <nav className="flex filter drop-shadow-md bg-background px-2 py-4 h-20 items-center">
       <MobileNav open={open} setOpen={setOpen} />
       <Logo />
       <div className="w-full flex justify-end items-center text-primary">

@@ -1,6 +1,5 @@
 import { faBriefcase, faChild } from "@fortawesome/free-solid-svg-icons";
-import FrontPageSection from "./frontPageSection";
-import Service, { IService } from "./service";
+import Service, { IService } from "../content/service";
 
 export default function Services() {
   const buffer = [];
@@ -31,14 +30,6 @@ export default function Services() {
     );
   }
   return (
-    <FrontPageSection
-      title="Service Offerings"
-      description={undefined}
-      backgroundColor={false}
-    >
-      <div className="flex flex-wrap py-12 px-3 mx-auto text-grey">
-        {buffer}
-      </div>
-    </FrontPageSection>
+    <div className="flex flex-wrap py-12 px-3 mx-auto text-grey">{buffer}</div>
   );
 }

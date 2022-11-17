@@ -21,24 +21,40 @@ export default function Hero() {
               World of Upbringing <br />
               <span>Nurturing Lives</span>
             </h2>
-            <Link
-              href={{
-                pathname: "/payment",
-                query: {
-                  url: "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
-                  mode: "consultation",
-                },
-              }}
-            >
-              <button
-                type="button"
-                className="inline-block px-7 py-3 bg-highlight text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                Book Now
-              </button>
-            </Link>
+            <div className="flex flex-row">
+              <div className="mx-3">
+                <Link
+                  href={{
+                    pathname: "/payment",
+                    query: {
+                      url: "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
+                      mode: "consultation",
+                    },
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="inline-block px-7 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                  >
+                    Book 1-1 Consultation
+                  </button>
+                </Link>
+              </div>
+              <div className="mx-3">
+                <Link href="#Workshops">
+                  <button
+                    type="button"
+                    className="inline-block px-7 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                  >
+                    See Workshops
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
