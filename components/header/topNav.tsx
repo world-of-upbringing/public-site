@@ -126,11 +126,11 @@ function MobileNav({
   }
   return (
     <div
-      className={`absolute top-0 left-0 h-screen w-screen bg-background transform ${
+      className={`absolute top-0 left-0 h-screen w-screen bg-white transform ${
         open ? "-translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
-      <div className="flex items-center justify-center filter drop-shadow-md bg-background text-dark-green h-20">
+      <div className="flex items-center justify-center filter drop-shadow-md bg-white text-dark-green h-20">
         {/*logo container*/}
         <Link href="/">
           <a className="text-xl font-semibold">World of Upbringing</a>
@@ -160,10 +160,10 @@ export default function Navbar() {
     }
   }
   return (
-    <nav className="flex filter drop-shadow-md bg-background px-2 py-4 h-20 items-center">
+    <nav className="flex filter drop-shadow-md bg-white px-2 py-4 h-20 items-center">
       <MobileNav open={open} setOpen={setOpen} />
       <Logo />
-      <div className="w-full flex justify-end items-center text-primary">
+      <div className="w-full flex justify-end items-center text-dark-green">
         <div
           className="z-50 flex relative w-8 h-8 flex-col justify-between items-center md:hidden"
           onClick={() => {

@@ -1,5 +1,6 @@
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
+import { IWorkshop } from "../../common/interfaces/IWorkshops";
 
 const handler: Handler = async (event, _) => {
   if (event.httpMethod !== "GET") {
@@ -13,14 +14,16 @@ const handler: Handler = async (event, _) => {
 
 const _sheetToObject = (data: string[][]) => {
   const len = data.length;
-  const res = [];
+  const res: IWorkshop[] = [];
   for (let i = 1; i < len; i++) {
     res.push({
       Title: data[i][0],
-      Date: data[i][1],
-      PaymentLink: data[i][2],
-      Amount: data[i][3],
-      Description: data[i][4],
+      Subtitle: data[i][1],
+      Date: data[i][2],
+      Duration: Number(data[i][3]),
+      PaymentLink: data[i][4],
+      Amount: Number(data[i][5]),
+      Description: data[i][6],
     });
   }
   return res;

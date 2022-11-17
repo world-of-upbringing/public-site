@@ -14,8 +14,6 @@ export default function BackToTop() {
 
     function scrollFunction() {
       if (mybutton == null) return;
-      console.log(document.body.scrollTop);
-      console.log(document.documentElement.scrollTop);
       if (
         document.body.scrollTop > 100 ||
         document.documentElement.scrollTop > 100
@@ -29,7 +27,6 @@ export default function BackToTop() {
     mybutton.addEventListener("click", backToTop);
 
     function backToTop() {
-      console.log("clicked");
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }

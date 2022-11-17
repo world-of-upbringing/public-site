@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONSULTATION_PAYMENT_LINK } from "../../common/constants";
 import bg from "../../public/images/hero.webp";
 
 export default function Hero() {
@@ -19,7 +20,7 @@ export default function Hero() {
           <div className="text-center text-white px-6 md:px-12">
             <h2 className="text-5xl font-bold tracking-tight leading-tight mb-12">
               World of Upbringing <br />
-              <span>Nurturing Lives</span>
+              <span>Nurturing Values</span>
             </h2>
             <div className="flex flex-row">
               <div className="mx-3">
@@ -27,7 +28,7 @@ export default function Hero() {
                   href={{
                     pathname: "/payment",
                     query: {
-                      url: "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
+                      url: CONSULTATION_PAYMENT_LINK,
                       mode: "consultation",
                     },
                   }}

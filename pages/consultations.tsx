@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONSULTATION_PAYMENT_LINK } from "../common/constants";
 import Button from "../components/common/button";
 import Container from "../components/common/container";
 import { H2 } from "../components/common/wouH";
@@ -69,8 +70,7 @@ export default function ConsultationPage({
 export async function getStaticProps() {
   return {
     props: {
-      paymentLink:
-        "https://test.instamojo.com/@mini_asthana/lc869424fd335422d91b8625989a96361/",
+      paymentLink: CONSULTATION_PAYMENT_LINK,
     },
   };
 }

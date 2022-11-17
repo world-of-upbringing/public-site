@@ -4,6 +4,7 @@ import {
   faClock,
   faCalendar,
   faGlobe,
+  faRupeeSign,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
@@ -12,6 +13,7 @@ export type CallbackFunction = () => void;
 export default function Card({
   title,
   subtitle,
+  duration,
   description,
   cta,
   link,
@@ -21,6 +23,7 @@ export default function Card({
 }: {
   title: string;
   subtitle?: string;
+  duration: number;
   description: string;
   cta: string;
   link: string;
@@ -31,14 +34,18 @@ export default function Card({
   return (
     <div className="flex flex-col w-full shadow-md rounded-2xl bg-white bg-gradient-to-b from-green/75 to-white/75">
       <div className="mx-4 mt-3">
-        <p className="text-dark-green text-base text-center">
-          {title.toUpperCase()}
+        <p className="text-dark-green text-base text-center uppercase">
+          {title}
         </p>
       </div>
 
-      <div className="mx-4 mt-1">
-        <p className="text-dark-green text-sm text-center">{subtitle}</p>
-      </div>
+      {subtitle && (
+        <div className="mx-4 mt-1">
+          <p className="text-dark-green text-sm font-light text-center uppercase">
+            {subtitle}
+          </p>
+        </div>
+      )}
 
       <div className="flex flex-row mx-1 mt-3">
         <FontAwesomeIcon
@@ -46,7 +53,9 @@ export default function Card({
           size="1x"
           icon={faClock}
         />
-        <p className="text-dark-green text-xs font-extralight">2 hours</p>
+        <p className="text-dark-green text-xs font-extralight">
+          {duration.toString() + " hours"}
+        </p>
       </div>
 
       <div className="flex flex-row mx-1 mt-3">
@@ -56,6 +65,15 @@ export default function Card({
           icon={faCalendar}
         />
         <p className="text-dark-green text-xs font-extralight">{date}</p>
+      </div>
+
+      <div className="flex flex-row mx-1 mt-3">
+        <FontAwesomeIcon
+          className="text-dark-green px-2"
+          size="1x"
+          icon={faRupeeSign}
+        />
+        <p className="text-dark-green text-xs font-extralight">{cta}</p>
       </div>
 
       <div className="flex flex-row mx-1 mt-3">

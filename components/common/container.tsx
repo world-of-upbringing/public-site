@@ -4,6 +4,8 @@ export default function Container({
   children: JSX.Element | JSX.Element[];
 }) {
   return (
-    <div className="mx-auto px-4 md:w-750 lg:w-1000 xl:w-1200">{children}</div>
+    <div className="mx-auto px-4 md:w-768 lg:w-1024 xl:w-1280 2xl:w-1536">
+      {children}
+    </div>
   );
 }

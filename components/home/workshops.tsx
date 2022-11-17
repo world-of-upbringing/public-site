@@ -31,7 +31,8 @@ export default function Workshops() {
       expandedCardInfo = (
         <Card
           title={expWorkshop["Title"]}
-          subtitle="Subtitle"
+          duration={expWorkshop["Duration"]}
+          subtitle={expWorkshop["Subtitle"]}
           description={expWorkshop["Description"]}
           cta={"INR " + expWorkshop["Amount"]}
           link={`/payment?url=${expWorkshop["PaymentLink"]}&mode=workshop`}
@@ -48,12 +49,13 @@ export default function Workshops() {
     const date = new Date(workshop["Date"]).toLocaleString();
 
     childElements.push(
-      <div key={workshop["Title"]} className="flex mx-auto py-6 w-60">
+      <div key={workshop["Title"]} className="flex mx-auto px-3 py-6 w-72">
         <Card
           title={workshop["Title"]}
-          subtitle="Subtitle"
+          subtitle={workshop["Subtitle"]}
+          duration={workshop["Duration"]}
           description={workshop["Description"]}
-          cta={"INR " + workshop["Amount"]}
+          cta={workshop["Amount"]}
           link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
           date={date}
           isExpanded={false}

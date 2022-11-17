@@ -26,11 +26,11 @@ export default function HomePageBody() {
       </FrontPageSection>
 
       <FrontPageSection
-        title="Patrons of World of Upbringing"
+        title="Workshops"
         description={undefined}
         backgroundColor={true}
       >
-        <Patrons />
+        <Workshops />
       </FrontPageSection>
 
       <FrontPageSection
@@ -42,11 +42,11 @@ export default function HomePageBody() {
       </FrontPageSection>
 
       <FrontPageSection
-        title="Workshops"
+        title="Patrons of World of Upbringing"
         description={undefined}
         backgroundColor={true}
       >
-        <Workshops />
+        <Patrons />
       </FrontPageSection>
     </div>
   );
