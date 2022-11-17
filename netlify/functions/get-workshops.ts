@@ -1,6 +1,6 @@
 import { Handler } from "@netlify/functions";
 import { google } from "googleapis";
-import { IWorkshop } from "../../common/interfaces/IWorkshops";
+import { IWorkshop } from "../../lib/interfaces/IWorkshops";
 
 const handler: Handler = async (event, _) => {
   if (event.httpMethod !== "GET") {

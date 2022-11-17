@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONSULTATION_PAYMENT_LINK } from "../../common/constants";
+import { CONSULTATION_PAYMENT_LINK } from "../../lib/constants";
 import bg from "../../public/images/hero.webp";
 
 export default function Hero() {

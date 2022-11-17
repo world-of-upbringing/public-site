@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Container from "../../components/common/container";
 import InstaPay from "../../components/external/instapay";
 import PageWrapper from "../../components/header/pageWrapper";
 
@@ -9,16 +10,14 @@ export default function PaymentPage() {
   const mode = query.mode as string;
 
   return (
-    <PageWrapper>
-      <div id="body">
+    <PageWrapper title="Payment">
+      <Container>
         <InstaPay
           url={url}
-          success_callback={
-            mode === "consultation" ? `/appointment` : `/payment/success`
-          }
+          success_callback={mode === "consultation" ? `/appointment` : `/`}
           failure_callback="/payment/failure"
         />
-      </div>
+      </Container>
     </PageWrapper>
   );
 }

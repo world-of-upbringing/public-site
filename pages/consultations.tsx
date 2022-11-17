@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONSULTATION_PAYMENT_LINK } from "../common/constants";
+import { CONSULTATION_PAYMENT_LINK } from "../lib/constants";
 import Button from "../components/common/button";
 import Container from "../components/common/container";
 import { H2 } from "../components/common/wouH";
@@ -12,7 +12,7 @@ export default function ConsultationPage({
   paymentLink: string;
 }) {
   return (
-    <PageWrapper>
+    <PageWrapper title="Consultations">
       <Container>
         <div className="h-screen">
           <H2>Consultations</H2>
