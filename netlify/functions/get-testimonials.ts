@@ -16,11 +16,8 @@ const _sheetToObject = (data: string[][]) => {
   const res = [];
   for (let i = 1; i < len; i++) {
     res.push({
-      persona: data[i][0],
-      demographic: data[i][1],
-      numStars: data[i][2],
-      img: data[i][3],
-      testimonial: data[i][4],
+      img: data[i][0],
+      testimonial: data[i][1],
     });
   }
   return res;

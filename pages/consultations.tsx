@@ -57,7 +57,7 @@ export default function ConsultationPage({
               }}
             >
               <a className="mx-auto">
-                <Button>Book an appointment here</Button>
+                <Button>Book an appointment</Button>
               </a>
             </Link>
           </div>

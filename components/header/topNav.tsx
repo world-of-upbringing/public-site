@@ -28,7 +28,7 @@ const LINKS: ILink[] = [
   },
   {
     Title: "Contact",
-    Link: "/?contact-form=true",
+    Link: "/#footer",
     Button: true,
   },
 ];
