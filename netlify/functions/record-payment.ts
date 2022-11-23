@@ -1,9 +1,10 @@
 import { Handler } from "@netlify/functions";
-import { PrismaClient } from "@prisma/client";
 import * as crypto from "crypto";
 import { google } from "googleapis";
 
-const prisma = new PrismaClient();
+import { MongoClient } from "mongodb";
+const mongoClient = new MongoClient(process.env.MONGODB_URI ?? "");
+const clientPromise = mongoClient.connect();
 
 const handler: Handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
@@ -22,24 +23,9 @@ const handler: Handler = async (event, context) => {
   }
 
   // Save the data to DB
-  await prisma.transaction.create({
-    data: {
-      payment_id: String(params.get("payment_id")),
-      status: String(params.get("status")),
-      currency: String(params.get("currency")),
-      fees: Number(params.get("fees")),
-      amount: Number(params.get("amount")),
-      longurl: String(params.get("longurl")),
-      shorturl: String(params.get("shorturl")),
-      purpose: String(params.get("purpose")),
-      buyer_email: String(params.get("buyer")),
-      buyer_name: String(params.get("buyer_name")),
-      buyer_phone: String(params.get("buyer_phone")),
-      mac: String(params.get("mac")),
-      payment_request_id: String(params.get("payment_request_id")),
-      time: new Date(),
-    },
-  });
+  const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
+  const collection = database.collection(process.env.MONGODB_COLLECTION ?? "");
+  collection.insertOne(params);
 
   // Update the date to Google sheets
   await _updateSheet(params);
