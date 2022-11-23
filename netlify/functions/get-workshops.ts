@@ -15,15 +15,21 @@ const handler: Handler = async (event, _) => {
 const _sheetToObject = (data: string[][]) => {
   const len = data.length;
   const res: IWorkshop[] = [];
+  const headers: { [id: string]: number } = {};
+  data[0].forEach((element, index) => {
+    headers[element] = index;
+  });
+
   for (let i = 1; i < len; i++) {
     res.push({
-      Title: data[i][0],
-      Subtitle: data[i][1],
-      Date: data[i][2],
-      Duration: Number(data[i][3]),
-      PaymentLink: data[i][4],
-      Amount: Number(data[i][5]),
-      Description: data[i][6],
+      Title: data[i][headers["Title"]],
+      Subtitle: data[i][headers["Subtitle"]],
+      Language: data[i][headers["Language"]],
+      Date: data[i][headers["Date"]],
+      Duration: Number(data[i][headers["Duration (hours)"]]),
+      PaymentLink: data[i][headers["Instamojo Link"]],
+      Amount: Number(data[i][headers["Amount"]]),
+      Description: data[i][headers["Description"]],
     });
   }
   return res;
