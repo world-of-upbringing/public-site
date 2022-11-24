@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ITestimonial } from "../content/testimonial";
+import { ITestimonial } from "../../lib/interfaces/ITestimonial";
 import TestimonialCarousel from "../content/testimonialCarousel";
 
 export default function Patrons() {
@@ -27,7 +27,6 @@ export default function Patrons() {
       isActive: false,
       persona: val["persona"],
       demographic: val["demographic"],
-      numStars: Number(val["numStars"]),
       image: val["img"],
       testimonial: val["testimonial"],
     });

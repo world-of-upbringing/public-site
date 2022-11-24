@@ -1,19 +1,23 @@
 import { Handler } from "@netlify/functions";
 import * as crypto from "crypto";
 import { google } from "googleapis";
-import axios from 'axios';
+import axios from "axios";
 import { MongoClient } from "mongodb";
-import { arrayBuffer } from "stream/consumers";
-const FormData = require('form-data');
+import { IInstamojoPayment } from "../../lib/interfaces/IInstamojoPayment";
+import { IPayment } from "../../lib/interfaces/IPayment";
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI ?? "");
+const mongoClient = new MongoClient(process.env.MONGODB_URI!);
 const clientPromise = mongoClient.connect();
 
 const handler: Handler = async (event, context) => {
+  /* Preconditions */
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
   const params = new URLSearchParams(event.body ?? "");
+  if (params.get("payment_id") == null) {
+    return { statusCode: 401, body: "Payment Id is mandatory" };
+  }
 
   console.log(`Received record-payment request with ${params}`);
 
@@ -26,55 +30,74 @@ const handler: Handler = async (event, context) => {
   // }
 
   // Get further transaction details from Instamojo
-  const details = await _getPaymentDetails(params.get('payment_id') ?? '')
+  const details = await _getPaymentDetails(params.get("payment_id") ?? "");
+  const payment: IPayment = {
+    ...details,
+    fullfilment: "booked",
+    mode: details.title.includes("Consultations")
+      ? "consultation"
+      : details.title.includes("On-Demand")
+      ? "on-demand"
+      : "workshop",
+    created_at: new Date(details.created_at),
+    updated_at: new Date(details.updated_at),
+    amount: +details.amount,
+    fees: +details.fees,
+    total_taxes: +details.total_taxes,
+  };
 
   // Save the data to DB
-  const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
-  const collection = database.collection(process.env.MONGODB_COLLECTION_PAYMENTS ?? "");
-  collection.insertOne(params);
+  const database = (await clientPromise).db(process.env.MONGODB_DATABASE!);
+  const collection = database.collection(
+    process.env.MONGODB_COLLECTION_PAYMENTS!
+  );
+  collection.insertOne(payment);
 
   // Update the date to Google sheets
-  await _updateSheet(params);
+  await _updateSheet(payment);
 
   // Return success
   return { statusCode: 200 };
 };
 
-const util = require('util')
-
-const _getPaymentDetails = async (id: string): Promise<{}> => {
-  var token_data = new FormData();
-  token_data.append('grant_type', 'client_credentials');
-  token_data.append('client_id', '7CusYRe5DAHjLCBkpKEi1V8mo2T38cCNp4Thh46k');
-  token_data.append('client_secret', '0GrsSCDEraFpqcCZ2iRqzaBFyjkktAoIN3jNbWOR9tmdYgghNtkUQzwOUqkdfmhAki7j8FBPc7jFi4FLAikgp65Q3k6re7YpbEPdiuHNXcRsqaib1IrARDUlFd3hNxbA');
-  console.log('Initiating token');
-  const token_resp = await axios.post(`https://api.instamojo.com/oauth2/token/`, token_data, {
-    headers: {
-        ...token_data.getHeaders()
-    }
-  });
+const _getPaymentDetails = async (id: string): Promise<IInstamojoPayment> => {
+  const token_data = new URLSearchParams();
+  token_data.append("grant_type", "client_credentials");
+  token_data.append("client_id", process.env.INSTAMOJO_CLIENT_ID!);
+  token_data.append("client_secret", process.env.INSTAMOJO_CLIENT_SECRET!);
+  console.log("Initiating token");
+  const token_resp = await axios.post(
+    `https://api.instamojo.com/oauth2/token/`,
+    token_data,
+    { headers: { "Accept-Encoding": "identity" } }
+  );
   if (token_resp.status >= 300) {
-    throw new Error(`Instamojo authentication failed with message: ${token_resp}`)
+    throw new Error(
+      `Instamojo authentication failed with message: ${token_resp}`
+    );
   }
-  console.log(`Got token with status ${token_resp.statusText}`);
+  const token = token_resp.data;
 
-  let payment_details_resp;
-  try {
-  payment_details_resp = await axios.get(`https://api.instamojo.com/v2/payments/${id}`, {headers: {authorization: `Bearer i-WuQNKyHsRpD6C93TbASsCY6CPU1WfiN2R_DjN772o.u9Jodcc6pGaOtp2nsenWIqKJYLQ_GxQqeyIzHYlAxUE`}});
-  } catch (e) {
-    console.log(e);
-    throw e;
-  }
+  const payment_details_resp = await axios.get<IInstamojoPayment>(
+    `https://api.instamojo.com/v2/payments/${id}`,
+    {
+      headers: {
+        "Accept-Encoding": "identity",
+        authorization: `Bearer ${token["access_token"]}`,
+      },
+    }
+  );
   if (payment_details_resp?.status >= 300) {
-    throw new Error(`Can't get payment details from Instamojo ${payment_details_resp}`)
+    throw new Error(
+      `Can't get payment details from Instamojo ${payment_details_resp}`
+    );
   }
-  console.log(payment_details_resp.data);
 
-  return payment_details_resp?.data;
-}
+  return payment_details_resp.data;
+};
 
 // Function to update the Google sheets with the payment details
-const _updateSheet = async (params: URLSearchParams): Promise<void> => {
+const _updateSheet = async (payment: IPayment): Promise<void> => {
   const auth = new google.auth.JWT({
     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/gm, "\n"),
@@ -89,11 +112,16 @@ const _updateSheet = async (params: URLSearchParams): Promise<void> => {
     requestBody: {
       values: [
         [
-          new Date().toDateString(),
-          params.get("payment_id"),
-          params.get("status"),
-          params.get("currency"),
-          params.get("amount"),
+          payment.created_at,
+          payment.title,
+          payment.link.split("/")[-2],
+          `${payment.order_info.unit_price} ${payment.currency}`,
+          payment.amount,
+          +payment.fees + +payment.total_taxes,
+          payment.instrument_type,
+          payment.name,
+          payment.email,
+          payment.phone,
         ],
       ],
     },

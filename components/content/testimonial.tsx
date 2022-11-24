@@ -1,28 +1,16 @@
 import Image from "next/image";
-import Rating from "../common/rating";
-
-export interface ITestimonial {
-  isActive: boolean;
-  image: string;
-  persona: string;
-  demographic: string;
-  numStars: number;
-  testimonial: string;
-}
 
 export default function Testimonial({
   isActive,
   img,
   persona,
   demographic,
-  numStars,
   children,
 }: {
   isActive: boolean;
   img: string;
   persona: string;
   demographic: string;
-  numStars: number;
   children: JSX.Element | string;
 }) {
   return (

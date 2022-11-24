@@ -1,4 +1,5 @@
-import Testimonial, { ITestimonial } from "./testimonial";
+import { ITestimonial } from "../../lib/interfaces/ITestimonial";
+import Testimonial from "./testimonial";
 
 export default function TestimonialCarousel({
   testimonials,
@@ -14,7 +15,6 @@ export default function TestimonialCarousel({
         img={testi.image}
         persona={testi.persona}
         demographic={testi.demographic}
-        numStars={testi.numStars}
       >
         {testi.testimonial}
       </Testimonial>
