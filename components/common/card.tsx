@@ -15,7 +15,8 @@ export default function Card({
   subtitle,
   duration,
   description,
-  cta,
+  amount,
+  lang,
   link,
   date,
   isExpanded,
@@ -25,7 +26,8 @@ export default function Card({
   subtitle?: string;
   duration: number;
   description: string;
-  cta: string;
+  amount: string;
+  lang: string;
   link: string;
   date: string;
   isExpanded: boolean;
@@ -73,7 +75,7 @@ export default function Card({
           size="1x"
           icon={faRupeeSign}
         />
-        <p className="text-dark-green text-xs font-extralight">{cta}</p>
+        <p className="text-dark-green text-xs font-extralight">{amount}</p>
       </div>
 
       <div className="flex flex-row mx-1 mt-3">
@@ -82,7 +84,7 @@ export default function Card({
           size="1x"
           icon={faGlobe}
         />
-        <p className="text-dark-green text-xs font-extralight">English</p>
+        <p className="text-dark-green text-xs font-extralight">{lang}</p>
       </div>
       {isExpanded && (
         <div className="mt-2 px-2">

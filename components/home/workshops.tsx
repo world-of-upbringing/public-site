@@ -34,9 +34,10 @@ export default function Workshops() {
           duration={expWorkshop["Duration"]}
           subtitle={expWorkshop["Subtitle"]}
           description={expWorkshop["Description"]}
-          cta={"INR " + expWorkshop["Amount"]}
+          amount={expWorkshop["Amount"].toString()}
+          lang={expWorkshop["Language"]}
           link={`/payment?url=${expWorkshop["PaymentLink"]}&mode=workshop`}
-          date={new Date(expWorkshop["Date"]).toLocaleString()}
+          date={expWorkshop["Date"]}
           isExpanded={true}
           onClick={() => setExpandedCard(expWorkshop["Title"])}
         />
@@ -45,9 +46,7 @@ export default function Workshops() {
   }
 
   const childElements = [];
-  for (const workshop of data as []) {
-    const date = new Date(workshop["Date"]).toLocaleString();
-
+  for (const workshop of data) {
     childElements.push(
       <div key={workshop["Title"]} className="flex mx-auto px-3 py-6 w-72">
         <Card
@@ -55,9 +54,10 @@ export default function Workshops() {
           subtitle={workshop["Subtitle"]}
           duration={workshop["Duration"]}
           description={workshop["Description"]}
-          cta={workshop["Amount"]}
+          amount={workshop["Amount"].toString()}
+          lang={workshop["Language"]}
           link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
-          date={date}
+          date={workshop["Date"]}
           isExpanded={false}
           onClick={() => setExpandedCard(workshop["Title"])}
         />
