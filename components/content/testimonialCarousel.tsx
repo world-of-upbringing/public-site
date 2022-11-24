@@ -21,7 +21,7 @@ export default function TestimonialCarousel({
     );
   }
   return (
-    <section className="mb-32 text-gray-800 text-center">
+    <section className="mb-32 text-white text-center">
       <div
         id="carouselExampleCaptions"
         className="carousel slide relative carousel-dark"

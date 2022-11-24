@@ -62,7 +62,6 @@ export default function Testimonial({
             </svg>
             {children}
           </p>
-          <Rating numStars={numStars} />
         </div>
       </div>
     </div>
