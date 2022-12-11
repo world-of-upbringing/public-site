@@ -6,10 +6,10 @@ import { MongoClient } from "mongodb";
 import { IInstamojoPayment } from "../../lib/interfaces/IInstamojoPayment";
 import { IPayment } from "../../lib/interfaces/IPayment";
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI!);
+const mongoClient = new MongoClient(process.env.MONGODB_URI ?? "");
 const clientPromise = mongoClient.connect();
 
-const handler: Handler = async (event, context) => {
+const handler: Handler = async (event) => {
   /* Preconditions */
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -22,12 +22,12 @@ const handler: Handler = async (event, context) => {
   console.log(`Received record-payment request with ${params}`);
 
   // Check if the mac is valid
-  // if (!_isTransactionValid(params)) {
-  //   return {
-  //     statusCode: 400,
-  //     body: "Invalid transaction",
-  //   };
-  // }
+  if (!_isTransactionValid(params)) {
+    return {
+      statusCode: 400,
+      body: "Invalid transaction",
+    };
+  }
 
   // Get further transaction details from Instamojo
   const details = await _getPaymentDetails(params.get("payment_id") ?? "");
@@ -47,9 +47,9 @@ const handler: Handler = async (event, context) => {
   };
 
   // Save the data to DB
-  const database = (await clientPromise).db(process.env.MONGODB_DATABASE!);
+  const database = (await clientPromise).db(process.env.MONGODB_DATABASE ?? "");
   const collection = database.collection(
-    process.env.MONGODB_COLLECTION_PAYMENTS!
+    process.env.MONGODB_COLLECTION_PAYMENTS ?? ""
   );
   collection.insertOne(payment);
 
@@ -63,8 +63,8 @@ const handler: Handler = async (event, context) => {
 const _getPaymentDetails = async (id: string): Promise<IInstamojoPayment> => {
   const token_data = new URLSearchParams();
   token_data.append("grant_type", "client_credentials");
-  token_data.append("client_id", process.env.INSTAMOJO_CLIENT_ID!);
-  token_data.append("client_secret", process.env.INSTAMOJO_CLIENT_SECRET!);
+  token_data.append("client_id", process.env.INSTAMOJO_CLIENT_ID ?? "");
+  token_data.append("client_secret", process.env.INSTAMOJO_CLIENT_SECRET ?? "");
   console.log("Initiating token");
   const token_resp = await axios.post(
     `https://api.instamojo.com/oauth2/token/`,
