@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Container from "../../components/common/container";
 import InstaPay from "../../components/external/instapay";
 import PageWrapper from "../../components/header/pageWrapper";
+import { CONSULTATION_PAYMENT_LINK } from "../../lib/constants";
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function PaymentPage() {
     <PageWrapper title="Payment">
       <Container>
         <InstaPay
-          url={url}
+          url={url ?? CONSULTATION_PAYMENT_LINK}
           success_callback={mode === "consultation" ? `/appointment` : `/`}
           failure_callback="/payment/failure"
         />

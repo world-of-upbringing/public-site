@@ -36,7 +36,7 @@ export default function Workshops() {
           description={expWorkshop["Description"]}
           amount={expWorkshop["Amount"].toString()}
           lang={expWorkshop["Language"]}
-          link={`/payment?url=${expWorkshop["PaymentLink"]}&mode=workshop`}
+          link={expWorkshop["PaymentLink"]}
           date={expWorkshop["Date"]}
           isExpanded={true}
           onClick={() => setExpandedCard(expWorkshop["Title"])}
@@ -56,7 +56,7 @@ export default function Workshops() {
           description={workshop["Description"]}
           amount={workshop["Amount"].toString()}
           lang={workshop["Language"]}
-          link={`/payment?url=${workshop["PaymentLink"]}&mode=workshop`}
+          link={workshop["PaymentLink"]}
           date={workshop["Date"]}
           isExpanded={false}
           onClick={() => setExpandedCard(workshop["Title"])}

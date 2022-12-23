@@ -1,14 +1,13 @@
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect } from "react";
-import { CONSULTATION_PAYMENT_LINK } from "../../lib/constants";
 
 export default function InstaPay({
   url,
   success_callback,
   failure_callback,
 }: {
-  url: string | undefined;
+  url: string;
   success_callback: string;
   failure_callback: string;
 }) {
@@ -49,7 +48,7 @@ export default function InstaPay({
         });
 
         /* End client-defined Callback Handler Functions */
-        window.Instamojo.open(url ?? CONSULTATION_PAYMENT_LINK);
+        window.Instamojo.open(url);
       }}
     />
   );
