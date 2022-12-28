@@ -14,7 +14,7 @@ export default function ConsultationPage({
   return (
     <PageWrapper title="Consultations">
       <Container>
-        <div className="h-screen">
+        <div className="min-h-screen">
           <H2>Consultations</H2>
           <WouP>
             World of Upbringing offers One-to-One Consultations & Couple

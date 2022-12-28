@@ -12,7 +12,7 @@ import Link from "next/link";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 export default function Footer() {
   return (
-    <div id="footer" className="flex bg-light-grey text-white">
+    <div id="footer" className="flex bg-light-grey text-white mt-3">
       <div className="mx-auto">
         <div className="text-center">
           <H4>Contact Us</H4>

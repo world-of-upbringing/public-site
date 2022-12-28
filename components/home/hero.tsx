@@ -22,11 +22,11 @@ export default function Hero() {
               <span>Nurturing Values</span>
             </h2>
             <div className="flex flex-row">
-              <div className="mx-3">
+              <div className="mx-auto">
                 <Link href="/consultations">
                   <button
                     type="button"
-                    className="inline-block px-7 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    className="inline-block px-3 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
@@ -34,11 +34,11 @@ export default function Hero() {
                   </button>
                 </Link>
               </div>
-              <div className="mx-3">
+              <div className="mx-auto">
                 <Link href="/workshops">
                   <button
                     type="button"
-                    className="inline-block px-7 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                    className="inline-block px-3 py-3 bg-dark-green text-white font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
