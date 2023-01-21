@@ -47,15 +47,7 @@ export default function ConsultationPage({
           </div>
 
           <div className="flex">
-            <Link
-              href={{
-                pathname: "/payment",
-                query: {
-                  url: paymentLink,
-                  mode: "consultation",
-                },
-              }}
-            >
+            <Link href="https://calendly.com/worldofupbringing/1-1-therapy">
               <a className="mx-auto">
                 <Button>Book an appointment</Button>
               </a>
