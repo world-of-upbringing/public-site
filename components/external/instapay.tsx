@@ -2,14 +2,17 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import { useEffect } from "react";
 
+type StatusCallback = (paymentId: string, status: string) => void;
+type CloseCallback = () => void;
+
 export default function InstaPay({
   url,
-  success_callback,
-  failure_callback,
+  statusCallback,
+  closeCallback,
 }: {
   url: string;
-  success_callback: string;
-  failure_callback: string;
+  statusCallback: StatusCallback;
+  closeCallback: CloseCallback;
 }) {
   const router = useRouter();
 
@@ -31,19 +34,29 @@ export default function InstaPay({
       onReady={() => {
         /* Start client-defined Callback Handler Functions */
         function onPaymentSuccessHandler(response: any) {
-          router.push(
-            `${success_callback}?transactionId=${response.paymentId}`
-          );
+          statusCallback(response.paymentId, response.status);
         }
 
         function onPaymentFailureHandler(response: any) {
-          router.push(`${failure_callback}?status=${response.status}`);
+          statusCallback(response.paymentId, response.status);
         }
+
+        function onClose() {
+          window.Instamojo.configure({
+            onSuccess: null,
+            onFailure: null,
+            onClose: null,
+            onOpen: null,
+          });
+          closeCallback();
+        }
+
         /* Configuring Handlers */
         window.Instamojo.configure({
           handlers: {
             onSuccess: onPaymentSuccessHandler,
             onFailure: onPaymentFailureHandler,
+            onClose: onClose,
           },
         });
 

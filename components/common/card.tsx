@@ -7,7 +7,6 @@ import {
   faRupeeSign,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import * as gtag from "../../lib/ga/gtag";
 
 export type CallbackFunction = () => void;
 
@@ -108,19 +107,12 @@ export default function Card({
               query: {
                 url: link,
                 mode: "workshop",
+                price: amount.toString(),
               },
             }}
+            as="/payment"
           >
-            <a
-              onClick={() =>
-                gtag.event({
-                  action: "click",
-                  category: "general",
-                  label: link,
-                  value: 1,
-                })
-              }
-            >
+            <a>
               <Button>Register now</Button>
             </a>
           </Link>
