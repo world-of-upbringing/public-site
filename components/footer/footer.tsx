@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-row my-3 place-content-center">
-          <Link href="https://api.whatsapp.com/send?phone=9986905689">
+          <Link href="https://api.whatsapp.com/send?phone=7975958943">
             <a>
               <FontAwesomeIcon
                 className="px-2 mx-auto"
