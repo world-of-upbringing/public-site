@@ -23,7 +23,11 @@ const LINKS: ILink[] = [
     Link: "/consultations",
   },
   {
-    Title: "About Us",
+    Title: "About Ila Asthana",
+    Link: "/about-ila",
+  },
+  {
+    Title: "About World of Upbringing",
     Link: "/about-us",
   },
   {
